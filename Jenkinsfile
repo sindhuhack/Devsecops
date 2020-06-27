@@ -37,11 +37,12 @@ pipeline {
     }
     
     stage ('Deploy-To-Tomcat') {
-           steps {
+      steps {
           sshagent(['JRNTR']) {
                sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@3.234.189.32:/opt/apache-tomcat-8.5.56/webapps/webapp.war'
              }      
           }   
+    }
       stage ('DAST') {
       steps {
         sshagent(['zap']) {
